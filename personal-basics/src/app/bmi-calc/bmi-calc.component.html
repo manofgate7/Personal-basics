@@ -1,0 +1,11 @@
+<p>Calculating your BMI</p>
+
+<form [formGroup]="bmiForm">
+    <label for="height">Height(in):</label><input type="number" id="height" formControlName="height"><br>
+    <label for="weight">Weight(lb):</label><input type="number" id="weight" formControlName="weight"><br>
+</form>
+<button (click)="CalcBMI()" [disabled]="!bmiForm.valid">Submit</button>
+
+<div *ngIf="isCalculated">
+    Your BMI is {{bmiNumber}}
+</div>
