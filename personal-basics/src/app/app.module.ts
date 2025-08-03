@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { MyHealthComponent } from './my-health/my-health.component';
 import { BmiCalcComponent } from './bmi-calc/bmi-calc.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProteinCalcComponent } from './protein-calc/protein-calc.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyHealthComponent,
-    BmiCalcComponent
+    BmiCalcComponent,
+    ProteinCalcComponent
   ],
   imports: [
     BrowserModule,

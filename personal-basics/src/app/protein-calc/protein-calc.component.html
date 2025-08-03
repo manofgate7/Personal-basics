@@ -1,0 +1,21 @@
+<p>Calculate how much protein you should have!</p>
+<form [formGroup]="proteinForm">
+    <label for="age">Age: </label><input type="number" id ="age" formControlName="age"><br>
+    <label for="gender">Gender: </label><input type="radio" id="gender1" formControlName="gender" value="male"><label for="gender1">Male</label> <input type="radio" id="gender2" formControlName="gender" value="female"><label for="gender2">Female</label> <br>
+    <label for="weight">Weight(lb):</label><input type="number" id="weight" formControlName="weight"><br>
+
+    <label for="activity">Level of Activity:</label>
+    <select id="activities" formControlName="selectedActivity">
+    <option value="0">No activity</option>
+    <option value="1">little (1-3 times a week)</option>
+    <option value="2">moderate (4-5 times a week)</option>
+    <option value="3">Active (intese 4-5 times a week)</option>
+    <option value="4">Very Activity (intese 6-7 times a week) </option>
+    <option value="5">Extra Active (intese every day)</option>
+    </select>
+</form>
+<button (click)="CalcProtein()" [disabled]="!proteinForm.valid">Submit</button>
+
+<div *ngIf="isCalculated">
+    Your protien range is {{proteinRange}}
+</div>
