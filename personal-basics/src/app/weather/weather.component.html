@@ -1,0 +1,17 @@
+<p>weather works!</p>
+<form [formGroup]="weatherForm">
+    <label class="label" for="city">City: </label>  <input type="text" id="city" formControlName="city">
+    <label class="label" for="state">State: </label> <input type="text" id="state" formControlName="state">
+</form>
+<button (click)="GetWeather()" [disabled]="!weatherForm.valid">Check Weather</button>
+<div *ngIf="isLoading">Loading!!!!!!!!!!!</div>
+<div *ngIf="displayWeather">
+    <ul *ngIf="weather?.forecastDays">
+        <li *ngFor="let forcast of weather?.forecastDays">
+            day :  {{forcast.displayDate.month}}  - {{forcast.displayDate.day}} - {{forcast.displayDate.year}} <br>
+            min temp : {{forcast.minTemperature.degrees}} <br>
+            max temp: {{forcast.maxTemperature.degrees}}
+        </li>
+    </ul>
+</div>
+<div *ngIf="isError">errored!</div>
