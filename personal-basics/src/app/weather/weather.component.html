@@ -6,12 +6,13 @@
 <button (click)="GetWeather()" [disabled]="!weatherForm.valid">Check Weather</button>
 <div *ngIf="isLoading">Loading!!!!!!!!!!!</div>
 <div *ngIf="displayWeather">
-    <ul *ngIf="weather?.forecastDays">
-        <li *ngFor="let forcast of weather?.forecastDays">
-            day :  {{forcast.displayDate.month}}  - {{forcast.displayDate.day}} - {{forcast.displayDate.year}} <br>
-            min temp : {{forcast.minTemperature.degrees}} <br>
-            max temp: {{forcast.maxTemperature.degrees}}
-        </li>
-    </ul>
+    <div  *ngIf="weather?.forecastDays">
+        <div class="list" *ngFor="let forcast of weather?.forecastDays">
+            <span class="column">{{forcast.displayDate.month}}-{{forcast.displayDate.day}}-{{forcast.displayDate.year}} </span>
+            <span class="column"><img src="{{forcast.maxTemperature.degrees | weatherImage}}" /></span>
+            <span class="column">min temp : {{forcast.minTemperature.degrees}}  </span>
+            <span class="column">max temp: {{forcast.maxTemperature.degrees}}</span>
+        </div>
+    </div>
 </div>
-<div *ngIf="isError">errored!</div>
+<div *ngIf="isError">{{errorMessage}}</div>

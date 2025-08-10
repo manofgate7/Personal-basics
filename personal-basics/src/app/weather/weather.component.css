@@ -1,3 +1,15 @@
 .label {
     padding-left: 5px;
 }
+.list {
+    clear: both;
+    box-sizing: border-box;
+    width: 50%;
+}
+.column {
+    float: left;
+    width: 25%;
+    border-bottom: blue solid 1px;
+    padding-top: 10px;
+    min-height: 60px ;
+}

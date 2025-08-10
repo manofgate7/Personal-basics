@@ -10,6 +10,7 @@ import { iweatherResponse } from '../Interfaces/iweatherResponse';
 })
 export class WeatherComponent implements OnInit {
   isError: boolean = false;
+  errorMessage: string = "";
   isLoading: boolean = false;
   displayWeather: boolean = false;
   weather: iweatherResponse | undefined;
@@ -29,17 +30,32 @@ export class WeatherComponent implements OnInit {
     const state: string = this.weatherForm.get("state")?.value;
     this.ws.getLocation(city, state).subscribe(
         {
-          error: e => console.error('Error fetching data:', e),
+          error: e => {
+                this.isError = true;
+                this.isLoading = false;
+                this.errorMessage = "an error occured: " + e;
+              },
           next: data => {
            let loc = this.ws.handleGetLocation(data);
-           this.ws.getWeatherLocation(loc[0], loc[1]).subscribe({
-              error:  e => console.error('Error fetching data:', e),
-              next: data =>  {
-                this.weather = this.ws.handleWeatherReturn(data);
+           if(loc[0] == 0 && loc[1] == 0){
+                this.isError = true;
                 this.isLoading = false;
-                this.displayWeather = true;
-              }
-            });
+                this.errorMessage = "an error occured: no results";
+           }else {
+              this.ws.getWeatherLocation(loc[0], loc[1]).subscribe({
+                            error:  e => {
+                              this.isError = true;
+                              this.isLoading = false;
+                              this.errorMessage = "an error occured: " + e;
+                            },
+                            next: data =>  {
+                              this.weather = this.ws.handleWeatherReturn(data);
+                              this.isLoading = false;
+                              this.displayWeather = true;
+                            }
+                          });
+           }
+           
           }
         });
 

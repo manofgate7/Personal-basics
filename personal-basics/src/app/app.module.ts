@@ -9,6 +9,7 @@ import { BmiCalcComponent } from './bmi-calc/bmi-calc.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProteinCalcComponent } from './protein-calc/protein-calc.component';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherImagePipe } from './weather-image.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WeatherComponent } from './weather/weather.component';
     MyHealthComponent,
     BmiCalcComponent,
     ProteinCalcComponent,
-    WeatherComponent
+    WeatherComponent,
+    WeatherImagePipe
   ],
   imports: [
     BrowserModule,

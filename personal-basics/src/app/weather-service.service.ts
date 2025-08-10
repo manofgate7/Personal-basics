@@ -29,10 +29,13 @@ export class WeatherServiceService {
   }
 
   handleGetLocation(data: any): [number, number] {
-      let lat = data.results[0].geometry.location.lat;
-      let lng = data.results[0].geometry.location.lng;
-      console.log("lat: " + lat + " ; lng: " + lng);
-      return [lat, lng];
+      if(data.results.length > 0) {
+        let lat = data.results[0].geometry.location.lat;
+        let lng = data.results[0].geometry.location.lng;
+        console.log("lat: " + lat + " ; lng: " + lng);
+        return [lat, lng];
+      }
+      return [0, 0];
   }
 
 }
